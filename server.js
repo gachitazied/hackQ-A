@@ -63,7 +63,7 @@ window.AZURE_CONFIG = {
   openai: {
     endpoint:   "${esc(env.AZURE_OPENAI_ENDPOINT || '')}",
     key:        "${esc(env.AZURE_OPENAI_API_KEY || env.AZURE_OPENAI_KEY || '')}",
-    deployment: "${esc(env.MODEL || 'gpt-4o-mini')}"
+    deployment: "${esc(env.MODEL || 'gpt-4o')}"
   },
   speech: {
     endpoint: "${esc(speechEndpoint)}",
