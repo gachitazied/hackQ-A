@@ -51,7 +51,6 @@ function loadEnv() {
 function esc(s) { return (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"'); }
 
 app.get('/', (req, res) => {
-  const env = loadEnv();
   let html = fs.readFileSync(path.join(__dirname, 'sirius_pitch_assistant.html'), 'utf8');
   
   const speechEndpoint = env.AZURE_SPEECH_ENDPOINT || '';
