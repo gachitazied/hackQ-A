@@ -52,22 +52,19 @@ function esc(s) { return (s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"'); 
 
 app.get('/', (req, res) => {
   let html = fs.readFileSync(path.join(__dirname, 'sirius_pitch_assistant.html'), 'utf8');
-  const env = loadEnv();
-  const speechEndpoint = env.AZURE_SPEECH_ENDPOINT || '';
-  const speechRegion = env.AZURE_SPEECH_REGION || 'eastus';
   
   const inject = `
 <script id="azure-config">
 window.AZURE_CONFIG = {
   openai: {
-    endpoint:   "${esc(env.AZURE_OPENAI_ENDPOINT || '')}",
-    key:        "${esc(env.AZURE_OPENAI_API_KEY || env.AZURE_OPENAI_KEY || '')}",
-    deployment: "${esc(env.MODEL || 'gpt-4o')}"
+    endpoint:   "${esc(process.env.AZURE_OPENAI_ENDPOINT || '')}",
+    key:        "${esc(process.env.AZURE_OPENAI_API_KEY || '')}",
+    deployment: "${esc(process.env.MODEL || 'gpt-4o')}"
   },
   speech: {
-    endpoint: "${esc(speechEndpoint)}",
-    region:   "${esc(speechRegion)}",
-    key:      "${esc(env.AZURE_SPEECH_KEY || '')}"
+    endpoint: "${esc(process.env.AZURE_SPEECH_ENDPOINT || '')}",
+    region:   "${esc(process.env.AZURE_SPEECH_REGION || 'eastus')}",
+    key:      "${esc(process.env.AZURE_SPEECH_KEY || '')}"
   }
 };
 </script>`;
