@@ -40,20 +40,4 @@ jobs:
         sleep 5
         curl --retry 3 --retry-delay 2 http://localhost:3000 || echo "Server start validation failed, but continuing..."
     
-    # OPTION 1: Déploiement vers Railway.app (Recommandé)
-    - name: Deploy to Railway
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-      uses: railway-app/action@v3
-      with:
-        token: ${{ secrets.RAILWAY_TOKEN }}
-        service: sirius-pitch-assistant
-    
-    # OPTION 2: Déploiement vers Render (Alternative gratuite)
-    # Décommentez le bloc ci-dessous si vous préférez Render :
-    # - name: Deploy to Render
-    #   if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
-    #   uses: render-org/deploy-action@v1
-    #   env:
-    #     RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-    #   with:
-    #     serviceId: ${{ secrets.RENDER_SERVICE_ID }}
+
